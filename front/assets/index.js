@@ -4,6 +4,9 @@ var indexUser = null;
 var urlApiUser = "http://localhost:8082/user";
 
 function onloadwindow(e) {
+    console.log("test load");
+    loadAllTemplate(); 
+
     var btnSubmit = document.getElementById("btnSubmit");
     btnSubmit.addEventListener("click", clickFrmSubmit);
 
