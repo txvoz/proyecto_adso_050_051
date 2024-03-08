@@ -10,8 +10,8 @@ function onloadwindow(e) {
     var btnSubmit = document.getElementById("btnSubmit");
     btnSubmit.addEventListener("click", clickFrmSubmit);
 
-    var btnClearLocalStorage = document.getElementById("deleteData");
-    btnClearLocalStorage.addEventListener("click", deleteLocalStorageData);
+    //var btnClearLocalStorage = document.getElementById("deleteData");
+    //btnClearLocalStorage.addEventListener("click", deleteLocalStorageData);
 
     loadSelectRoles();
 
