@@ -33,6 +33,9 @@ public class UserEntity {
     @Column(name = "avatar")
     private String avatar;
 
+    @Column(name = "password")
+    private String password;
+
     @ManyToOne
     @JoinColumn(name = "rol_id", nullable = false, updatable = false)
     private RolEntity rol;

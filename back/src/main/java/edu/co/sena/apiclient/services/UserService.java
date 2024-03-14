@@ -33,6 +33,7 @@ public class UserService {
         entity.setEmail(dto.getEmail()); // formato email
         entity.setPhone(dto.getPhone()); // formato telefono valido para colombia
         entity.setAvatar(dto.getAvatar()); // El nombre de la imagen
+        entity.setPassword("1234");
 
         Long rolId =  dto.getRol();
         RolEntity rol = this.rolService.getRolEntity(rolId);
