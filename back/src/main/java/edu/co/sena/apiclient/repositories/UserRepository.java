@@ -12,4 +12,7 @@ public interface UserRepository
         JpaSpecificationExecutor<UserEntity> {
 
 
+    UserEntity getByEmail(String email);
+
+
 }

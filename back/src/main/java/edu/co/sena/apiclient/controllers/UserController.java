@@ -47,4 +47,12 @@ public class UserController {
         return "ok";
     }
 
+    @GetMapping(path = "/email/{email}")
+    public UserResponseDetailDto getByEmail(
+            @PathVariable("email") String email
+    ){
+
+        return this.service.getByEmail(email);
+    }
+
 }

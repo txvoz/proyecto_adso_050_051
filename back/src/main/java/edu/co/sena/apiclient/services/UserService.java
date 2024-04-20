@@ -134,5 +134,30 @@ public class UserService {
         return  file.exists();
     }
 
+    public UserResponseDetailDto getByEmail(String email){
+        UserEntity entity = this.repository.getByEmail(email);
+        if(entity == null) {
+            
+        }
+
+        UserResponseDetailDto dto = new UserResponseDetailDto();
+
+        dto.setFullName(entity.getFullName());
+        dto.setColor(entity.getColor());
+        dto.setEmail(entity.getEmail());
+        dto.setEmail(entity.getEmail());
+        dto.setPhone(entity.getPhone());
+        dto.setId(entity.getId());
+        dto.setBornDate(entity.getBornDate());
+        dto.setAvatarFilePath(getAvatar(entity));
+
+        dto.setRol(RolResponseDto.builder()
+                .id(entity.getRol().getId())
+                .title(entity.getRol().getTitle())
+                .build());
+
+        return dto;
+    }
+
 
 }

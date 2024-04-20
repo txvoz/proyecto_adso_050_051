@@ -3,6 +3,29 @@ var urlApiZone = "http://localhost:8082/zone";
 window.addEventListener("load", onloadwindow)
 
 function onloadwindow(){
+    $("#buscarUsuario").click(function(e){
+
+        $.ajax(
+            {
+                url: "http://localhost:8082/user/email/" + $("#email").val(), 
+                success: function(result){
+                    $("#buscarUsuario").hide("slow");
+                    $("#dataUser").show("fast");
+
+                    var date =  result.bornDate.replace("T","-");
+                    var arrayDate = date.split("-");
+
+                    $("#fullname").val(result.fullName);
+                    $("#phone").val(result.phone);
+                    $("#color").val(result.color);
+                    $("#borndate").val(arrayDate[0]+"-"+arrayDate[1]+"-"+arrayDate[2]);
+
+                    console.log(result);
+                }
+            }
+        );
+
+    });
     getZones(printTypeZones);
 }
 
@@ -25,12 +48,17 @@ function printTypeZones(data) {
 
 }
 
+function openModal(idZona) {
+    $('#modalRegistro').modal('show');
+}
+
 function returnZones(data) {
     var html = "";
     for(var i = 0; i < data.length; i++) { 
         var zone = data[i];
         var status = zone.status === 'INACTIVO' ? 'disabled' : '';
-        html += `<div class="zona ` + status + ` "> <div class='title'>` + zone.title + `</div></div>`;
+        var fn = zone.status === 'INACTIVO' ? '' : "onclick='openModal("+zone.id+")'";
+        html += `<div class="zona ` + status + ` " ` + fn + ` > <div class='title'>` + zone.title + `</div></div>`;
     }
 
     return html;
