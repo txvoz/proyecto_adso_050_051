@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="assets/css/parqueo.css">
     <script type="text/javascript" src="assets/js/template.js"></script>
     <script type="text/javascript" src="assets/js/index.js"></script>
+    <script type="text/javascript" src="assets/js/apiUser.js"></script>
     <script type="text/javascript" src="assets/js/parqueo.js"></script>
 </head>
 
@@ -52,7 +53,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="input-group mb-3">
-                                    <input id="email" name="email" type="email" class="form-control" placeholder="Correo electronico del usuario"
+                                    <input id="email" name="email" type="email" 
+                                        required
+                                        class="form-control" placeholder="Correo electronico del usuario"
                                         aria-label="Correo electronico del usuario" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="basic-addon2">email@example.com</span>
@@ -62,51 +65,68 @@
                             </div>
                         </div>
                         <div id="dataUser" style="display:none">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="fullname">Nombre usuario</label>
-                                        <input type="text" class="form-control" id="fullname" 
-                                            aria-describedby="emailHelp" 
-                                            placeholder="Ingrese nombre de usuario">
-                                    </div>                            
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="borndate">Fecha de nacimiento</label>
-                                        <input type="date" class="form-control" id="borndate" 
-                                            aria-describedby="emailHelp" 
-                                           >
-                                    </div>                            
+                            <form action="#" id="frmUserValidate">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="fullname">Nombre usuario</label>
+                                            <input type="text" class="form-control" id="fullname" 
+                                                required
+                                                aria-describedby="emailHelp" 
+                                                placeholder="Ingrese nombre de usuario">
+                                        </div>                            
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="phone">Telefono</label>
-                                        <input type="number" class="form-control" id="phone" 
-                                            aria-describedby="emailHelp" 
-                                            placeholder="Ingrese telefono de usuario">
-                                    </div>                            
+    
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="borndate">Fecha de nacimiento</label>
+                                            <input type="date" class="form-control" id="borndate" 
+                                                required
+                                                aria-describedby="emailHelp" 
+                                               >
+                                        </div>                            
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="color">Color</label>
-                                        <input type="color" class="form-control" id="color" 
-                                            aria-describedby="emailHelp" 
-                                            placeholder="Ingrese color">
-                                    </div>                            
+    
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="phone">Telefono</label>
+                                            <input type="number" class="form-control" id="phone" 
+                                                required
+                                                aria-describedby="emailHelp" 
+                                                placeholder="Ingrese telefono de usuario">
+                                        </div>                            
+                                    </div>
                                 </div>
-                            </div>
+    
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="color">Color</label>
+                                            <input type="color" class="form-control" id="color" 
+                                                required
+                                                aria-describedby="emailHelp" 
+                                                placeholder="Ingrese color">
+                                        </div>                            
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <br>
+                                            <button class="btn btn-success" id="guardarNuevoUsuario" type="submit">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
 
-                           
+                            
+
                         </div>
 
                     </div>
@@ -116,6 +136,7 @@
 
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" id="resetModal">Limpiar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                 </div>

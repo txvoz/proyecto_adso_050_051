@@ -1,27 +1,101 @@
 var urlApiZone = "http://localhost:8082/zone";
 
+var currentClientId = null;
+
 window.addEventListener("load", onloadwindow)
 
+function resetFormModal() {
+    currentClientId = null;
+    $("#buscarUsuario").show("slow");
+    $("#dataUser").hide("fast");
+    $("#email").val("")
+}
+
 function onloadwindow(){
+    $("#frmUserValidate").submit(function(e){
+        userCreate({
+            "fullName": $("#fullname").val(),
+            "bornDate": $("#borndate").val(),
+            "color": $("#color").val(),
+            "email": $("#email").val(),
+            "phone": $("#phone").val(), 
+            "avatar": "-.jpg", 
+            "rol": 3
+        },function(data) {
+            currentClientId = data.id;
+            $("#fullname").attr("readonly", true);
+            $("#phone").attr("readonly", true);
+            $("#color").attr("readonly", true);
+            $("#borndate").attr("readonly", true);
+            $("#guardarNuevoUsuario").hide();
+
+        },function(status) {
+            if(status >= 500) {
+                alert("Error del servidor");
+                return;
+            }
+            alert("No fue posible procesar la operacion code ["+status+"]");
+        });
+
+        return false;
+    });
+
+    $("#resetModal").click(resetFormModal);
+
+    $("#modalRegistro").on("hide.bs.modal", resetFormModal);
+
     $("#buscarUsuario").click(function(e){
+
+        $("#buscarUsuario").hide("slow");
+        $("#dataUser").show("fast");
 
         $.ajax(
             {
                 url: "http://localhost:8082/user/email/" + $("#email").val(), 
-                success: function(result){
-                    $("#buscarUsuario").hide("slow");
-                    $("#dataUser").show("fast");
-
+                success: function(result) {
+                    
                     var date =  result.bornDate.replace("T","-");
                     var arrayDate = date.split("-");
 
+                    currentClientId = result.id;
                     $("#fullname").val(result.fullName);
+                    $("#fullname").attr("readonly", true);
+
                     $("#phone").val(result.phone);
+                    $("#phone").attr("readonly", true);
+
                     $("#color").val(result.color);
+                    $("#color").attr("readonly", true);
+
                     $("#borndate").val(arrayDate[0]+"-"+arrayDate[1]+"-"+arrayDate[2]);
+                    $("#borndate").attr("readonly", true);
+
+                    $("#guardarNuevoUsuario").hide();
 
                     console.log(result);
+                }, 
+                error: function(xhr, status, error){
+                    if(xhr.status !== 404) {
+                        alert("Se produjo un error en el servidor!");
+                        return;
+                    }
+                   
+                    currentClientId = null;
+                    $("#fullname").val("");
+                    $("#fullname").attr("readonly", false);
+
+                    $("#phone").val("");
+                    $("#phone").attr("readonly", false);
+
+                    $("#color").val("");
+                    $("#color").attr("readonly", false);
+
+                    $("#borndate").val("");
+                    $("#borndate").attr("readonly", false);
+                    
+                    $("#guardarNuevoUsuario").show();
                 }
+                
             }
         );
 

@@ -7,6 +7,7 @@ import edu.co.sena.apiclient.contracts.UserRequestUpdateAvatarDto;
 import edu.co.sena.apiclient.contracts.UserResponseDetailDto;
 import edu.co.sena.apiclient.entities.RolEntity;
 import edu.co.sena.apiclient.entities.UserEntity;
+import edu.co.sena.apiclient.exceptions.ResourceNotFoundException;
 import edu.co.sena.apiclient.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -24,7 +26,7 @@ public class UserService {
     @Autowired
     private RolService rolService;
 
-    public void create(UserRequestCreateDto dto){
+    public long create(UserRequestCreateDto dto){
         UserEntity entity = new UserEntity();
 
         entity.setFullName(dto.getFullName());
@@ -41,7 +43,8 @@ public class UserService {
         entity.setRol(rol);
 
         //yo debo hacer las validaciones de negocio
-        this.repository.save(entity);
+        entity = this.repository.save(entity);
+        return entity.getId();
     }
 
     public List<UserResponseDetailDto> getAllUsers(){
@@ -136,8 +139,9 @@ public class UserService {
 
     public UserResponseDetailDto getByEmail(String email){
         UserEntity entity = this.repository.getByEmail(email);
-        if(entity == null) {
-            
+
+        if(Objects.isNull(entity)) {
+            throw new ResourceNotFoundException();
         }
 
         UserResponseDetailDto dto = new UserResponseDetailDto();

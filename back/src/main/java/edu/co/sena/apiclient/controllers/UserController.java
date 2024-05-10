@@ -18,8 +18,8 @@ public class UserController {
 
     @PostMapping()
     public String create(@RequestBody UserRequestCreateDto request) {
-        this.service.create(request);
-        return "ok";
+        long id = this.service.create(request);
+        return "{\"status\":\"OK\", \"id\": \""+id+"\"}";
     }
 
     @GetMapping
