@@ -16,6 +16,7 @@
     <script type="text/javascript" src="assets/js/template.js"></script>
     <script type="text/javascript" src="assets/js/index.js"></script>
     <script type="text/javascript" src="assets/js/apiUser.js"></script>
+    <script type="text/javascript" src="assets/js/apiVehicle.js"></script>
     <script type="text/javascript" src="assets/js/parqueo.js"></script>
 </head>
 
@@ -64,6 +65,7 @@
                                 <button class="btn btn-success" id="buscarUsuario">Buscar usuario</button>                                
                             </div>
                         </div>
+
                         <div id="dataUser" style="display:none">
 
                             <form action="#" id="frmUserValidate">
@@ -119,20 +121,85 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <br>
-                                            <button class="btn btn-success" id="guardarNuevoUsuario" type="submit">Guardar</button>
+                                            <button class="btn btn-success" id="guardarNuevoUsuario" type="submit">Guardar Usuario</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
 
-                            
+                        </div>
+
+                    </div>
+                    
+                    <!-- El step 2 sera para validar la informacion de la zona de parqueo -->
+                    <div id="reserva-step-2" style="display: none;">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <input id="placa" name="placa" type="text" 
+                                        required
+                                        class="form-control" placeholder="Placa del vehiculo"
+                                        aria-label="Placa del vehiculo" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">ABC123</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success" id="buscarVehiculo">Buscar vehiculo</button>                                
+                            </div>
+                        </div>
+
+                        <div id="dataVehiculo" style="display:none">
+
+                            <form action="#" id="frmVehiculoValidate">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="marca">Marca</label>
+                                            <input type="text" class="form-control" id="marca" 
+                                                required
+                                                aria-describedby="emailHelp" 
+                                                placeholder="Ingrese marca del vehiculo">
+                                        </div>                            
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="colorVehiculo">Color</label>
+                                            <input type="color" class="form-control" id="colorVehiculo" 
+                                                required
+                                                aria-describedby="emailHelp" 
+                                                placeholder="Ingrese el color">
+                                        </div>                            
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="descripcion">Descripcion</label>
+                                            <textarea class="form-control" id="descripcion" required></textarea>
+                                        </div>                            
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <br>
+                                            <button class="btn btn-success" id="guardarNuevoVehiculo" type="submit">Guardar Vehiculo</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
 
                         </div>
 
                     </div>
-
-                    <!-- El step 2 sera para validar la informacion de la zona de parqueo -->
-                    <div id="reserva-step-2"></div>
 
                 </div>
                 <div class="modal-footer">
